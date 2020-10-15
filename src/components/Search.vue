@@ -1,7 +1,7 @@
 <template>
     <div v-show="show" class="search" :class="{ 'loading' : loading }">
         <searchtitle></searchtitle>
-        <searchbar @loading="loadingQuery()" @loaded="loadedQuery()" @user-found="userFound()"></searchbar>
+        <searchbar @loading="loadingQuery()" @loaded="loadedQuery()"></searchbar>
     </div>
 </template>
 
@@ -34,6 +34,10 @@
               this.show = false;
             }
         },
+
+        created() {
+            Event.listen('user-found', () => this.userFound() );
+        }
     }
 
 </script>
