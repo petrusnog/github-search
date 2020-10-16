@@ -1,21 +1,20 @@
 <template lang="html">
-    <div v-show="show" class="user">
+    <div v-show="show" class="user" :class="{ 'loading' : loading }">
         <Cabecalho></Cabecalho>
         <main>
             <aside>
-                <Userprofile></Userprofile>
-                <Userdetails></Userdetails>
+                <Userprofile :avatar="user.avatar_url" :name="user.name" :username="user.login"></Userprofile>
+                <Iconedinfo v-if="user.company" icon="fa-briefcase">{{ user.company }}</Iconedinfo>
+                <Iconedinfo v-if="user.location" icon="fa-compass">{{ user.location }}</Iconedinfo>
+                <!-- <Iconedinfo icon="fa-star">0</Iconedinfo> -->
+                <Iconedinfo v-if="user.public_repos" icon="fa-archive">{{ user.public_repos }}</Iconedinfo>
+                <Iconedinfo v-if="user.followers" icon="fa-user">{{ user.followers }}</Iconedinfo>
             </aside>
             <div class="user-repos">
-                <Repo>
-                    <template v-slot:title>ecorp-Python-Exploit</template>
-                    <template v-slot:description>This is a simple exploit that breaks down the Capitalism system.</template>
-                    <template v-slot:stars>0</template>
-                </Repo>
-                <Repo>
-                    <template v-slot:title>JWT Breaker</template>
-                    <template v-slot:description>This is a simple auth token broke algoritm, it runs in Python.</template>
-                    <template v-slot:stars>0</template>
+                <Repo v-for="repo in repos" :link="repo.html_url">
+                    <template v-slot:title>{{ repo.name }}</template>
+                    <template v-slot:description>{{ repo.description }}</template>
+                    <template v-slot:stars>{{ repo.stargazers_count }}</template>
                 </Repo>
             </div>
         </main>
@@ -25,31 +24,57 @@
 <script>
     import Cabecalho from './Cabecalho.vue';
     import Userprofile from './Userprofile.vue';
-    import Userdetails from './Userdetails.vue';
+    import Iconedinfo from './Iconedinfo.vue';
     import Repo from './Repo.vue';
 
     export default {
         components: {
             Cabecalho,
             Userprofile,
-            Userdetails,
+            Iconedinfo,
             Repo
         },
 
         data() {
             return {
-                show: false
+                show: false,
+                user: {},
+                repos: {},
+                loading: false
             }
         },
 
         methods: {
-            userFound () {
+            userFound ( user ) {
                 this.show = true;
+                this.user = user;
+
+                //Caso usuário exista, busque pelos seus repositórios
+                axios
+                .get('https://api.github.com/users/' + user.login + '/repos' )
+                .then( response => {
+                    this.repos = response.data;
+                })
+                .catch( error => {
+                    console.log( error );
+                })
+            },
+            userRepos ( repos ) {
+                this.show = true;
+                this.repos = repos;
+            },
+            loadingPage () {
+                this.loading = true;
+            },
+            loadedPage () {
+                this.loading = false;
             }
         },
 
         created() {
-            Event.listen('user-found', () => this.userFound() );
+            Event.listen('user-found', ( user ) => this.userFound( user ) );
+            Event.listen('loading', () => this.loadingPage() );
+            Event.listen('loaded', () => this.loadedPage() );
         }
     }
 </script>
@@ -61,6 +86,12 @@
         max-width: 1400px;
         margin-left: auto;
         margin-right: auto;
+        transition: all .5s;
+        opacity: 1;
+    }
+
+    .user.loading{
+        opacity: .6;
     }
 
     .user aside{

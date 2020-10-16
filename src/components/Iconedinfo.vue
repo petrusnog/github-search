@@ -21,8 +21,13 @@
         margin-bottom: 10px;
     }
 
-    .iconed-info:last-child {
+    .iconed-info:last-child,
+    .repo .iconed-info {
         margin-bottom: 0;
+    }
+
+    .repo .iconed-info{
+        margin-right: 20px;
     }
 
     .iconed-info i {
