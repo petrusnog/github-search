@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
+import './assets/css/global.css'
 
 window.Event = new class {
     constructor () {
