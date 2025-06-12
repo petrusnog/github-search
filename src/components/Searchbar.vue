@@ -1,7 +1,7 @@
 <template lang="html">
     <div style="position: relative;">
         <div class="search-bar" :class="{ 'errored' : errored }">
-            <input v-model="query" @input="onTyping()" type="text" placeholder="Nome de usuário. Ex: 'SamuraiPetrus'" pattern="[a-zA-Z0-9]+">
+            <input v-model="query" @input="onTyping()" type="text" placeholder="Nome de usuário. Ex: 'petrusnog'" pattern="[a-zA-Z0-9]+">
             <button type="button" class="animation" name="button" @click="onSearch()" :disabled="forbidden_char">
                 <i class="fas fa-search"></i>
             </button>
