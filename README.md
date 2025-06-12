@@ -1,26 +1,26 @@
 # GitHub Search
 
-Aplicação web construída com Vue.js para pesquisar perfis e repositórios do GitHub.
+Web application built with Vue.js to search for GitHub profiles and repositories.
 
-[Acesse a aplicação em produção](https://github-search-ebon-ten.vercel.app/)
+[View the application in production](https://github-search-ebon-ten.vercel.app/)
 
-## Como rodar o projeto
+## How to run
 
 ```bash
-# instale as dependências
+# install dependencies
 npm install
 
-# rode com hot reload em localhost:8080
+# run with hot reload on localhost:8080
 npm run dev
 
-# gere o build de produção em dist/
+# generate the production build in dist/
 npm run build
 ```
 
-## Estrutura
-- **src/**: código fonte da aplicação
-- **dist/**: arquivos gerados para produção
+## Structure
+- **src/**: application source code
+- **dist/**: generated production files
 
-## Licença
-Projeto disponível sob a licença MIT.
+## License
+Project available under the MIT License.
 
