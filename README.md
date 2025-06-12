@@ -1,18 +1,26 @@
-# vue-github-search
+# GitHub Search
 
-> A Vue.js project
+Aplicação web construída com Vue.js para pesquisar perfis e repositórios do GitHub.
 
-## Build Setup
+[Acesse a aplicação em produção](https://github-search-ebon-ten.vercel.app/)
 
-``` bash
-# install dependencies
+## Como rodar o projeto
+
+```bash
+# instale as dependências
 npm install
 
-# serve with hot reload at localhost:8080
+# rode com hot reload em localhost:8080
 npm run dev
 
-# build for production with minification
+# gere o build de produção em dist/
 npm run build
 ```
 
-For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
+## Estrutura
+- **src/**: código fonte da aplicação
+- **dist/**: arquivos gerados para produção
+
+## Licença
+Projeto disponível sob a licença MIT.
+
