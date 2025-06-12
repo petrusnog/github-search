@@ -32,10 +32,14 @@
             },
             userFound() {
               this.show = false;
+            },
+            backButtonClicked ()  {
+                this.show = true;
             }
         },
 
         created() {
+            Event.listen('back-button-clicked', () => this.backButtonClicked() );
             Event.listen('user-found', () => this.userFound() );
         }
     }

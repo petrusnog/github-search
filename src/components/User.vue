@@ -68,11 +68,15 @@
             },
             loadedPage () {
                 this.loading = false;
+            },
+            backButtonClicked ()  {
+                this.show = false;
             }
         },
 
         created() {
             Event.listen('user-found', ( user ) => this.userFound( user ) );
+            Event.listen('back-button-clicked', () => this.backButtonClicked() );
             Event.listen('loading', () => this.loadingPage() );
             Event.listen('loaded', () => this.loadedPage() );
         }
