@@ -2,7 +2,7 @@
 
 Web application built with Vue.js to search for GitHub profiles and repositories.
 
-[View the application in production](https://github-search-ebon-ten.vercel.app/)
+[TEST MY APPLICATION](https://github-search-ebon-ten.vercel.app/)
 
 ## How to run
 
