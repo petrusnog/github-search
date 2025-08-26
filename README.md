@@ -2,6 +2,8 @@
 
 Web application built with Vue.js to search for GitHub profiles and repositories.
 
+<i>Note: This project is using the Options API as the component writing pattern.</i>
+
 [TEST MY APPLICATION](https://github-search-ebon-ten.vercel.app/)
 
 ## How to run
