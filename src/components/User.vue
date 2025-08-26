@@ -22,65 +22,65 @@
 </template>
 
 <script>
-    import Cabecalho from './Cabecalho.vue';
-    import Userprofile from './Userprofile.vue';
-    import Iconedinfo from './Iconedinfo.vue';
-    import Repo from './Repo.vue';
+import Cabecalho from './Cabecalho.vue';
+import Userprofile from './Userprofile.vue';
+import Iconedinfo from './Iconedinfo.vue';
+import Repo from './Repo.vue';
 
-    export default {
-        components: {
-            Cabecalho,
-            Userprofile,
-            Iconedinfo,
-            Repo
-        },
+export default {
+    components: {
+        Cabecalho,
+        Userprofile,
+        Iconedinfo,
+        Repo
+    },
 
-        data() {
-            return {
-                show: false,
-                user: {},
-                repos: {},
-                loading: false
-            }
-        },
-
-        methods: {
-            userFound ( user ) {
-                this.show = true;
-                this.user = user;
-
-                //Caso usuário exista, busque pelos seus repositórios
-                axios
-                .get('https://api.github.com/users/' + user.login + '/repos' )
-                .then( response => {
-                    this.repos = response.data;
-                })
-                .catch( error => {
-                    console.log( error );
-                })
-            },
-            userRepos ( repos ) {
-                this.show = true;
-                this.repos = repos;
-            },
-            loadingPage () {
-                this.loading = true;
-            },
-            loadedPage () {
-                this.loading = false;
-            },
-            backButtonClicked ()  {
-                this.show = false;
-            }
-        },
-
-        created() {
-            Event.listen('user-found', ( user ) => this.userFound( user ) );
-            Event.listen('back-button-clicked', () => this.backButtonClicked() );
-            Event.listen('loading', () => this.loadingPage() );
-            Event.listen('loaded', () => this.loadedPage() );
+    data() {
+        return {
+            show: false,
+            user: {},
+            repos: {},
+            loading: false
         }
+    },
+
+    methods: {
+        userFound ( user ) {
+            this.show = true;
+            this.user = user;
+
+            //If user exists, search for his repositories.
+            axios
+            .get('https://api.github.com/users/' + user.login + '/repos' )
+            .then( response => {
+                this.repos = response.data;
+            })
+            .catch( error => {
+                console.log( error );
+            })
+        },
+        userRepos ( repos ) {
+            this.show = true;
+            this.repos = repos;
+        },
+        loadingPage () {
+            this.loading = true;
+        },
+        loadedPage () {
+            this.loading = false;
+        },
+        backButtonClicked ()  {
+            this.show = false;
+        }
+    },
+
+    created() {
+        Event.listen('user-found', ( user ) => this.userFound( user ) );
+        Event.listen('back-button-clicked', () => this.backButtonClicked() );
+        Event.listen('loading', () => this.loadingPage() );
+        Event.listen('loaded', () => this.loadedPage() );
     }
+}
 </script>
 
 <style lang="css" scoped>

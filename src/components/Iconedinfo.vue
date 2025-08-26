@@ -15,7 +15,7 @@ export default {
     },
     computed: {
         computedSize() {
-        // Garante que a unidade está correta
+        // Assures 'px' in size.
         return /^\d+$/.test(this.size) ? this.size + 'px' : this.size;
         }
     }

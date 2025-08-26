@@ -1,18 +1,18 @@
 <template lang="html">
     <div style="position: relative;">
         <div class="search-bar" :class="{ 'errored': errored }">
-            <input v-model="query" @input="onTyping()" type="text" placeholder="Nome de usuário. Ex: 'petrusnog'"
+            <input v-model="query" @input="onTyping()" type="text" placeholder="GitHub username"
                 pattern="[a-zA-Z0-9]+" @keyup.enter="onEnterPressed">
             <button type="button" class="animation" name="button" @click="onSearch()" :disabled="forbidden_char">
                 <i class="fas fa-search"></i>
             </button>
         </div>
         <div class="error-msg" :class="{ 'show': forbidden_char }">
-            Evite caracteres especiais.
+            Avoid special characters.
         </div>
         <div class="error-msg" :class="{ 'show': errored }">
-            Usuário não encontrado. Desculpa. &#9785;<br>
-            Evite acentos, ou caracteres especiais.
+            User not found. Sorry. &#9785;<br>
+            Avoid special characters or accents.
         </div>
     </div>
 </template>
